@@ -8,3 +8,7 @@ body {
   font: 16px Helvetica, Arial;
   color: #fff;
 }
+.username {
+  font-weight: bold;
+  margin-right: 2ex;
+}
