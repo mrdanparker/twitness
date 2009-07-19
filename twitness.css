@@ -8,6 +8,21 @@ body {
   font: 16px Helvetica, Arial;
   color: #fff;
 }
+div#content {
+  margin: auto;
+  width: 600px;
+}
+a img {
+  border: none;
+}
+.tweet img {
+  float: left;
+  margin-bottom: 1ex;
+  margin-right: 2ex;
+}
+.tweet {
+  clear: both;
+}
 .username {
   font-weight: bold;
   margin-right: 2ex;
