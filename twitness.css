@@ -12,6 +12,14 @@ div#content {
   margin: auto;
   width: 600px;
 }
+@font-face {
+  font-family: "chunk";
+  src: url("Chunkfive.otf") format("opentype");
+}
+h1 {
+  font-family: "chunk";
+  font-size: 4.0em;
+}
 a img {
   border: none;
 }
