@@ -19,6 +19,7 @@ div#content {
 h1 {
   font-family: "chunk";
   font-size: 4.0em;
+  margin-bottom: 0.5ex;
 }
 a img {
   border: none;
@@ -34,4 +35,16 @@ a img {
 .username {
   font-weight: bold;
   margin-right: 2ex;
+}
+#userInput input,
+#userInput button{
+  font-size: 1.5em;
+  padding: 0.3ex;
+}
+#username {
+  margin-right: 1ex;
+  width: 30ex;
+}
+#username.defaultText {
+  color: #ccc;
 }

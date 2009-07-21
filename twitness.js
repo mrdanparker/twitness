@@ -10,6 +10,21 @@ $(function() {
 	$("#usernameSearch").click(function(){
 		showTweets($("#username").val());
 	});
+
+	// Default instruction text in the username input
+	var defaultSearchText = "Enter your twitter username...";
+	var input = $("#username");
+	input.val(defaultSearchText).addClass("defaultText");
+	input.focus(function(){
+		if (input.val() == defaultSearchText){
+			input.val("").removeClass("defaultText");
+		}
+	});
+	input.blur(function(){
+		if (input.val() == "") {
+			input.addClass("defaultText").val(defaultSearchText);
+		}
+	});
 	
 });
 
