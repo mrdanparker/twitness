@@ -55,6 +55,7 @@ $(function(){
 });
 
 function showTweets(username){
+	$("#username").addClass("loading");
 	$.twitterSearch({searchText: "hundredpushups", from: username}, function(results){
 		// clear previous contents
 		$('#recent').slideUp(400, function(){
@@ -73,7 +74,7 @@ function showTweets(username){
 			}
 			applyTextReplacements(".tweetText");
 			updateAddressBarHash(username);
-			$('#recent').slideDown(400);
+			$('#recent').slideDown(400, function(){$("#username").removeClass("loading");});
 		});
         });
 }

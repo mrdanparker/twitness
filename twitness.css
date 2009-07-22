@@ -46,6 +46,9 @@ a img {
   font-weight: bold;
   margin-right: 2ex;
 }
+.loading {
+  background: white url('loading.gif') right center no-repeat;
+}
 #userInput input,
 #userInput button{
   font-size: 1.5em;
