@@ -32,6 +32,16 @@ a img {
 .tweet {
   clear: both;
 }
+.fail {
+  color: red;
+}
+.pass {
+  color: #0f0;
+}
+.sets {
+  color: yellow;
+  font-weight: bold;
+}
 .username {
   font-weight: bold;
   margin-right: 2ex;
