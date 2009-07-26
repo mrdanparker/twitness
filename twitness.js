@@ -1,14 +1,14 @@
 //Define some global vars
 var setsHighlight = {
-	regex : new RegExp("(\\d{1,3}([-,:\\\\/;|\\+]) ?\\d{1,3}(\\2 ?\\d{1,3}){3,7})", "g"),
+	regex : /(\d{1,3}([-,:\\/;|\+]) ?\d{1,3}(\2 ?\d{1,3}){3,7})/g,
 	replacement : "<span class=\"sets\">$1</span>"
 };
 var failHighlight = {
-	regex : new RegExp("(#?fail(ed)?(ure)?)","gi"),
+	regex : /(#?fail(ed)?(ure)?)/gi,
 	replacement : "<span class=\"fail\">$1</span>"
 };
 var passHighlight = {
-	regex : new RegExp("(#?pass(ed)?)","gi"),
+	regex : /(#?pass(ed)?)/gi,
 	replacement : "<span class=\"pass\">$1</span>"
 };
 var allTextReplacements = [
@@ -17,7 +17,7 @@ var allTextReplacements = [
 	passHighlight
 ];
 
-$(function(){
+$(function() {
 
 	// Get the username hash from the url to pass into showTweets
 	var hash = "";
@@ -60,9 +60,18 @@ function showTweets(username){
 		// clear previous contents
 		$('#recent').slideUp(400, function(){
 			$('#recent').empty();
-			// append new contents
+			// iterate over the search results
+			var allPlotData = [];
 			for (var i in results) {
 				var tweet = results[i];
+				var sets = extractSetData(tweet.text);
+				if(sets) {
+					// compile the plot info
+					var userPlotData = allPlotData[tweet.from_user] ? allPlotData[tweet.from_user] : [];
+					userPlotData[userPlotData.length] = [Date.parse(tweet.created_at), sets.sum];
+					allPlotData[tweet.from_user] = userPlotData;
+				}
+				// append new contents
 				var p = $("<p/>"); 
 				var user = $("<span/>").text(tweet.from_user).addClass("username");
 				var text = $("<span/>").text(tweet.text).addClass("tweetText");
@@ -73,10 +82,12 @@ function showTweets(username){
 				$('#recent').append(p);
 			}
 			applyTextReplacements(".tweetText");
+			plotSets($("#graph"), allPlotData, username);
 			updateAddressBarHash(username);
 			$('#recent').slideDown(400, function(){$("#username").removeClass("loading");});
 		});
         });
+
 }
 
 // Updates the address bar hash with the given value
@@ -93,5 +104,48 @@ function applyTextReplacements(selector) {
 			this.innerHTML = this.innerHTML.replace(allTextReplacements[i].regex, allTextReplacements[i].replacement);
 		}
 	});
+}
+
+/**
+* Parses text to extract information about exercise sets. If there is more than one
+* string of sets within text then only data on the first is returned.
+* @param text the string to parse for set info
+* @return a map of sets data containing: An array of individual set numbers (data.sets), 
+* A sum of sets (data.sum) and the highest set number (data.maxConsecutive).
+*/
+function extractSetData(text) {
+	var data = null;
+	// pull out the string of sets (i.e. "23,28,23,23,33")
+	var setsStrings = text.match(setsHighlight.regex);
+	if(setsStrings) {
+		data = {};
+		// work out which delimiter was used
+		var delimiter = setsStrings[0].match(/[-,:\\/;|\+]/);
+		// split the string of sets on the delimiter		
+		data.sets = setsStrings[0].split(delimiter);
+		// iterate over sets to work out sum and max consecutive
+		var sum = 0;
+		var maxConsecutive = 0;
+		$(data.sets).each(function() {
+			var current = parseInt(this);
+			sum += current
+			maxConsecutive = (current > maxConsecutive) ? current : maxConsecutive;
+		});
+		data.sum = sum;
+		data.maxConsecutive = maxConsecutive;
+	}
+	return data;
+}
+
+
+function plotSets(placeholder, plotData, username)
+{	
+	if(username) {
+		var data = plotData[username];
+		$.plot(placeholder, [ {data: data} ], {xaxis: { mode: "time"} });
+		placeholder.show();
+	} else {
+		placeholder.hide();
+	}	
 }
 
