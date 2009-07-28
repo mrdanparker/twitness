@@ -28,6 +28,9 @@ var allTextReplacements = [
 	atLinking
 ];
 
+// Default instruction text in the username input
+var defaultSearchText = "Enter your twitter username...";
+
 $(function() {
 
 	// Get the username hash from the url to pass into showTweets
@@ -48,8 +51,6 @@ $(function() {
 		showTweets($("#username").val());
 	});
 
-	// Default instruction text in the username input
-	var defaultSearchText = "Enter your twitter username...";
 	var input = $("#username");
 	input.val(defaultSearchText).addClass("defaultText");
 	input.focus(function(){
@@ -66,6 +67,9 @@ $(function() {
 });
 
 function showTweets(username){
+	if (username === defaultSearchText) {
+		username = "";
+	}
 	$("#username").addClass("loading");
 	$.twitterSearch({searchText: "hundredpushups", from: username}, function(results){
 		// clear previous contents
