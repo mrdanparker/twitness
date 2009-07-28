@@ -1,6 +1,6 @@
 //Define some global vars
 var setsHighlight = {
-	regex : /(\d{1,3}([-,:\\/;|\+]) ?\d{1,3}(\2 ?\d{1,3}){3,7})/g,
+	regex : /(\d{1,3}([-,:\\/;\|\+]) ?\d{1,3}(\2 ?\d{1,3}){3,7})/g,
 	replacement : "<span class=\"sets\">$1</span>"
 };
 var failHighlight = {
@@ -11,10 +11,21 @@ var passHighlight = {
 	regex : /(#?pass(ed)?)/gi,
 	replacement : "<span class=\"pass\">$1</span>"
 };
+var hashLinking = {
+	regex : /(#([a-z]+))(.)/gi,
+	replacement : "<a href=\"http://twitter.com/search?q=%23$2\">$1</a>$3"
+};
+var atLinking = {
+	regex : /(@([a-z]+))(.)/gi,
+	replacement : "<a href=\"http://twitter.com/$2\">$1</a>$3"
+};
+
 var allTextReplacements = [
 	setsHighlight,
 	failHighlight,
-	passHighlight
+	passHighlight,
+	hashLinking,
+	atLinking
 ];
 
 $(function() {
@@ -72,8 +83,11 @@ function showTweets(username){
 					allPlotData[tweet.from_user] = userPlotData;
 				}
 				// append new contents
-				var p = $("<p/>"); 
-				var user = $("<span/>").text(tweet.from_user).addClass("username");
+				var twitnessLink = $('<a/>')
+					.attr({href:"#" + tweet.from_user})
+					.text(tweet.from_user)
+					.mouseup(function(){showTweets(this.text);return false;});
+				var user = $("<span/>").append(twitnessLink).addClass("username");
 				var text = $("<span/>").text(tweet.text).addClass("tweetText");
 			      	var link = $('<a/>').attr({href:"http://twitter.com/" + tweet.from_user});
 				var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
@@ -120,7 +134,7 @@ function extractSetData(text) {
 	if(setsStrings) {
 		data = {};
 		// work out which delimiter was used
-		var delimiter = setsStrings[0].match(/[-,:\\/;|\+]/);
+		var delimiter = setsStrings[0].match(/[-,:\\/;\|\+]/);
 		// split the string of sets on the delimiter		
 		data.sets = setsStrings[0].split(delimiter);
 		// iterate over sets to work out sum and max consecutive
