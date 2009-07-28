@@ -24,18 +24,19 @@ h1 {
 a img {
   border: none;
 }
-a:link {
-  color:#ffffff;
+a {
+  color:#fff;
   text-decoration:none;
 }
 a:hover {
-  color:#ffffff; 
   text-decoration:underline;
 }
 .tweet img {
   float: left;
+  height: 48px;
   margin-bottom: 1ex;
   margin-right: 2ex;
+  width: 48px;
 }
 .tweet {
   clear: both;
