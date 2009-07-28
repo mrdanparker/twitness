@@ -26,10 +26,6 @@ a img {
 }
 a {
   color:#fff;
-  text-decoration:none;
-}
-a:hover {
-  text-decoration:underline;
 }
 .tweet img {
   float: left;
@@ -41,10 +37,12 @@ a:hover {
 .tweet {
   clear: both;
 }
-.fail {
+.fail,
+.fail a {
   color: red;
 }
-.pass {
+.pass,
+.pass a {
   color: #0f0;
 }
 .sets {
