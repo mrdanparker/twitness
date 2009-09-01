@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+    <cron>
+        <url>/updatecache.groovy</url>
+        <description>job to fetch new tweets every 5 minutes</description>
+        <schedule>every 5 minutes</schedule>
+    </cron>
+</cronentries>

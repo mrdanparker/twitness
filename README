@@ -2,3 +2,6 @@ twitness - a twitter app for monitoring fitness trends e.g. #hundredpushups
 
 "Witness the fitness!"
   -- Roots Manuva
+
+> groovy build.groovy
+> dev_appserver.sh war

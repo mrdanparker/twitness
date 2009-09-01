@@ -1,0 +1,70 @@
+/* HTML 5 Block Elements */
+article, aside, dialog, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+/* General colour theme */
+body {
+  background-color: #000;
+  font: 16px Helvetica, Arial;
+  color: #fff;
+}
+div#content {
+  margin: auto;
+  width: 600px;
+}
+@font-face {
+  font-family: "chunk";
+  src: url("/fonts/Chunkfive.otf") format("opentype");
+}
+h1 {
+  font-family: "chunk";
+  font-size: 4.0em;
+  margin-bottom: 0.5ex;
+}
+a img {
+  border: none;
+}
+a {
+  color:#fff;
+}
+.tweet img {
+  float: left;
+  height: 48px;
+  margin-bottom: 1ex;
+  margin-right: 2ex;
+  width: 48px;
+}
+.tweet {
+  clear: both;
+}
+.fail,
+.fail a {
+  color: red;
+}
+.pass,
+.pass a {
+  color: #0f0;
+}
+.sets {
+  color: yellow;
+  font-weight: bold;
+}
+.username {
+  font-weight: bold;
+  margin-right: 2ex;
+}
+.loading {
+  background: white url('/images/loading.gif') right center no-repeat;
+}
+#userInput input,
+#userInput button{
+  font-size: 1.5em;
+  padding: 0.3ex;
+}
+#username {
+  margin-right: 1ex;
+  width: 30ex;
+}
+#username.defaultText {
+  color: #ccc;
+}
