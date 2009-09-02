@@ -42,9 +42,9 @@ json.results.each {
 if (latestTweets) {	// If there are new tweets
 	log.info "Storing ${latestTweets.size()} new tweets" 
 	datastoreService.put latestTweets
-	log.info 'Tweets Stored'
+	log.debug 'Tweets Stored'
 } else {
-	log.info 'No new tweets'
+	log.debug 'No new tweets'
 }
 
 // Only update the since value if we have new tweets (else it will be -1)
