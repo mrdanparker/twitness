@@ -1,7 +1,8 @@
 import com.google.appengine.api.datastore.*
 import com.google.appengine.api.urlfetch.*
 import java.net.URL
-import java.util.logging.Logger;
+import java.text.SimpleDateFormat
+import java.util.logging.Logger
 import net.sf.json.*
 import net.sf.json.groovy.JsonSlurper
 
@@ -30,13 +31,22 @@ def url = twitterUrl += "&since_id=$sinceId"
 def result = fetchService.fetch(new URL(url))
 def json = new JsonSlurper().parseText(new String(result.content))
 
+def df = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US)
+
 def latestTweets = []
 json.results.each {
 	def tweet = new Entity("tweet")
 	tweet.term = queryTerm
-	it.each { key, value ->
-		tweet[key] = getValue(value)
-	}
+	tweet.created_at = df.parse(it.created_at)
+	tweet.from_user = it.from_user
+	tweet.from_user_id = it.from_user_id
+	tweet.id = it.id
+	tweet.iso_language_code  = it.iso_language_code
+	tweet.profile_image_url = new Link(it.profile_image_url)
+	tweet.source = it.source
+	tweet.text = it.text
+	tweet.to_user = it.to_user
+	tweet.to_user_id = getValue(it.to_user_id)	// Can be null so use special handler
 	latestTweets << tweet
 }
 if (latestTweets) {	// If there are new tweets
