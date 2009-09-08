@@ -1,4 +1,5 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+    
     <servlet>
         <servlet-name>GroovyServlet</servlet-name>
         <servlet-class>groovyx.gaelyk.servlet.GaelykServlet</servlet-class>
@@ -7,7 +8,23 @@
         <servlet-name>TemplateServlet</servlet-name>
         <servlet-class>groovyx.gaelyk.servlet.GaelykTemplateServlet</servlet-class>
     </servlet>
-
+	<servlet>
+		<servlet-name>GroovyRestServlet</servlet-name>
+		<servlet-class>groovyx.gaelyk.servlet.GaelykServlet</servlet-class>
+		<init-param>
+			<param-name>resource.name.replace.all</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>resource.name.regex</param-name>
+			<param-value>^/api/([^/]+).*$</param-value>
+		</init-param>
+		<init-param>
+			<param-name>resource.name.replacement</param-name>
+			<param-value>/api/$1.groovy</param-value>
+		</init-param>
+	</servlet>
+	
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
         <url-pattern>*.groovy</url-pattern>
@@ -16,8 +33,24 @@
         <servlet-name>TemplateServlet</servlet-name>
         <url-pattern>*.gtpl</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+		<servlet-name>GroovyRestServlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
     
     <welcome-file-list> 
         <welcome-file>index.gtpl</welcome-file> 
     </welcome-file-list>
+    
+    
+    
+    
+    
+    
+    
+
+
+
+    
+    
 </web-app>

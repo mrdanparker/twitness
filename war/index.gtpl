@@ -21,7 +21,7 @@
     </div>
   </div>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/jquery.twitter.js"></script>
+  <script type="text/javascript" src="/js/jquery.twitnessCacheSearch.js"></script>
   <script type="text/javascript" src="/js/twitness.js"></script>
   <script type="text/javascript" src="/js/jquery.flot.pack.js"></script>
 </body>

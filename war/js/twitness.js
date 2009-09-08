@@ -71,7 +71,7 @@ function showTweets(username){
 		username = "";
 	}
 	$("#username").addClass("loading");
-	$.twitterSearch({searchText: "hundredpushups", from: username}, function(results){
+	$.twitnessCacheSearch({from: username}, function(results){
 		// clear previous contents
 		$('#recent').slideUp(400, function(){
 			$('#recent').empty();
