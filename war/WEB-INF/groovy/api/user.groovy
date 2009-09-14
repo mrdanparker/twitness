@@ -25,7 +25,7 @@ switch (request.method) {
         		tweetJson.put("iso_language_code", tweet.iso_language_code)
         		tweetJson.put("source", tweet.source)
         		tweetJson.put("profile_image_url", tweet.profile_image_url.toString())
-        		tweetJson.put("created_at:", tweet.created_at.toString())
+        		tweetJson.put("created_at", tweet.created_at.toString())
         		jsonArray.add(tweetJson)
         	}
         	JSONObject resultsObj = new JSONObject()
