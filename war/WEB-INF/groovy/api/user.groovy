@@ -1,5 +1,6 @@
 import com.google.appengine.api.datastore.*
 import net.sf.json.JSONObject
+import net.sf.json.JSONArray
 
 def restParts = request.requestURI.tokenize('/')
 def datastoreService = DatastoreServiceFactory.getDatastoreService()
@@ -13,7 +14,7 @@ switch (request.method) {
         	.addFilter("from_user", Query.FilterOperator.EQUAL, username)
         	Iterator<Entity> tweets = datastoreService.prepare(query).asIterator()
         	
-        	JSONObject json = new JSONObject()
+        	JSONArray jsonArray = new JSONArray()
         	for(Entity tweet : tweets ) {
         		JSONObject tweetJson = new JSONObject()
         		tweetJson.put("text", tweet.text)
@@ -25,11 +26,12 @@ switch (request.method) {
         		tweetJson.put("source", tweet.source)
         		tweetJson.put("profile_image_url", tweet.profile_image_url.toString())
         		tweetJson.put("created_at:", tweet.created_at.toString())
-        		json.accumulate("results", tweetJson)
+        		jsonArray.add(tweetJson)
         	}
-        	System.out.println("called")
+        	JSONObject resultsObj = new JSONObject()
+        	resultsObj.element("results", jsonArray)
         	response.setContentType("application/json")
-    		print json.toString()
+    		print resultsObj.toString()
         }
 	break;
 }
