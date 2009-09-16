@@ -63,10 +63,9 @@ if (json.max_id > 0) {
 	datastoreService.put since
 }
 
-//Translate null JSON values to a null in groovy.
-//http://www.nabble.com/RESTClient%2C-JSON---null-values-tt25094142.html
+// Translate null JSON values to a null in groovy.
 def getValue(value) {
-	if (value instanceof JSONObject && value.isNullObject()) // value instanceof JSONObject && value.isNullObject())
+	if (value instanceof JSONNull)
 		return null
 	else
 		return value
