@@ -3,7 +3,6 @@ import net.sf.json.JSONObject
 import net.sf.json.JSONArray
 
 def restParts = request.requestURI.tokenize('/')
-def datastoreService = DatastoreServiceFactory.getDatastoreService()
 
 switch (request.method) {
 	case "GET" :
