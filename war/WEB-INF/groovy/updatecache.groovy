@@ -10,7 +10,6 @@ import net.sf.json.groovy.JsonSlurper
  * Script to cache the given search term in the datastore periodically
  * Should ideally be invoked by a cron job
  */
-def datastoreService = DatastoreServiceFactory.getDatastoreService()
 def fetchService = URLFetchServiceFactory.getURLFetchService()
 def log = Logger.getAnonymousLogger();
 

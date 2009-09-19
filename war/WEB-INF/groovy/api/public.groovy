@@ -2,8 +2,6 @@ import com.google.appengine.api.datastore.*
 import net.sf.json.JSONObject
 import net.sf.json.JSONArray
 
-def datastoreService = DatastoreServiceFactory.getDatastoreService()
-
 switch (request.method) {
 	case "GET" :
         Query query = new Query("tweet")
