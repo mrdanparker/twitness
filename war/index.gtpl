@@ -24,6 +24,7 @@
   <script type="text/javascript" src="/js/jquery.twitnessCacheSearch.js"></script>
   <script type="text/javascript" src="/js/twitness.js"></script>
   <script type="text/javascript" src="/js/jquery.flot.pack.js"></script>
+  <script type="text/javascript" src="/js/jquery.timeago.js"></script>
   <script type="text/javascript">
   	var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
 	document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))

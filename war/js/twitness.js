@@ -101,20 +101,21 @@ function showTweets(username){
 					.text(tweet.from_user);
 				var user = $("<span/>").append(twitnessLink).addClass("username");
 				var text = $("<span/>").text(tweet.text).addClass("tweetText");
-			      	var link = $('<a/>').attr({href:"#" + tweet.from_user});
+			    var link = $('<a/>').attr({href:"#" + tweet.from_user});
 				var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
 	  			$(link).append(img);
+	  			var timestamp = $('<abbr class="timeago"/>').attr({title:new Date(tweet.created_at)}).text(tweet.created_at);
 				var clear = $('<div class="autoclear"></div>');
-				var p = $("<li/>").append(link).append(user).append(text).append(clear).addClass('tweet');
-				$('#recent').append(p);
+				var li = $("<li/>").append(link).append(user).append(text).append(timestamp).append(clear).addClass('tweet');
+				$('#recent').append(li);
 			}
 			applyTextReplacements(".tweetText");
 			plotSets($("#graph"), allPlotData, username);
 			updateAddressBarHash(username);
+			$("abbr.timeago").timeago();
 			$('#recent').slideDown(400, function(){$("#username").removeClass("loading");});
 		});
-        });
-
+	});
 }
 
 // Updates the address bar hash with the given value
