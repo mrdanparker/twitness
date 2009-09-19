@@ -11,7 +11,7 @@
 </head>
 <body>
   <div id="content">
-    <h1>twitness</h1>
+    <h1><a href="/">twitness</a></h1>
     <div id="userInput">
         <input type="text" id="username"/><img id="usernameSearch" src="/images/show.png"/>
     </div>
