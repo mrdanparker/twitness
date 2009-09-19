@@ -17,7 +17,7 @@
     </div>
     <div id="display">
         <div id="graph" style="width:600px;height:300px"><!-- Place holder --></div>
-        <div id="recent"><!-- Place holder --></div>
+        <ol id="recent"><!-- Place holder --></ol>
     </div>
   </div>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>

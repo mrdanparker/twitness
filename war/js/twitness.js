@@ -96,7 +96,8 @@ function showTweets(username){
 			      	var link = $('<a/>').attr({href:"http://twitter.com/" + tweet.from_user});
 				var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
 	  			$(link).append(img);
-				var p = $("<p/>").append(link).append(user).append(text).addClass('tweet');
+				var clear = $('<div class="autoclear"></div>');
+				var p = $("<li/>").append(link).append(user).append(text).append(clear).addClass('tweet');
 				$('#recent').append(p);
 			}
 			applyTextReplacements(".tweetText");
