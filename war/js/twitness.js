@@ -47,7 +47,11 @@ $(function() {
 		}	
 	});
 
-	$("#usernameSearch").click(function(){
+	$("#usernameSearch").mouseover(function(){
+		$(this).attr("src", "/images/show-hover.png");
+	}).mouseout(function(){
+		$(this).attr("src", "/images/show.png");
+	}).click(function(){
 		showTweets($("#username").val());
 	});
 
