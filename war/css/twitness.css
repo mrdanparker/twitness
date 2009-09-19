@@ -21,6 +21,9 @@ h1 {
   font-size: 4.0em;
   margin-bottom: 0.5ex;
 }
+h1 a {
+  text-decoration: none;
+}
 a img {
   border: none;
 }
