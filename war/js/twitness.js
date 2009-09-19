@@ -51,6 +51,11 @@ $(function() {
 		showTweets($("#username").val());
 	});
 
+	$('a[href^="#"]').live('click', function() {
+		var username = $(this).attr("href").substring(1);
+		showTweets(username);
+	});
+
 	var input = $("#username");
 	input.val(defaultSearchText).addClass("defaultText");
 	input.focus(function(){
@@ -89,11 +94,10 @@ function showTweets(username){
 				// append new contents
 				var twitnessLink = $('<a/>')
 					.attr({href:"#" + tweet.from_user})
-					.text(tweet.from_user)
-					.mouseup(function(){showTweets(this.text);return false;});
+					.text(tweet.from_user);
 				var user = $("<span/>").append(twitnessLink).addClass("username");
 				var text = $("<span/>").text(tweet.text).addClass("tweetText");
-			      	var link = $('<a/>').attr({href:"http://twitter.com/" + tweet.from_user});
+			      	var link = $('<a/>').attr({href:"#" + tweet.from_user});
 				var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
 	  			$(link).append(img);
 				var clear = $('<div class="autoclear"></div>');
