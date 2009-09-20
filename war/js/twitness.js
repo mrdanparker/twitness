@@ -104,7 +104,7 @@ function showTweets(username){
 			    var link = $('<a/>').attr({href:"#" + tweet.from_user});
 				var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
 	  			$(link).append(img);
-	  			var timestamp = $('<abbr class="timeago"/>').attr({title:new Date(tweet.created_at)}).text(tweet.created_at);
+				var timestamp = $('<a/>').attr({href:'http://twitter.com/' +  tweet.from_user + '/status/' + tweet.id, 'class':'time'}).text($.timeago(new Date(tweet.created_at)));
 				var clear = $('<div class="autoclear"></div>');
 				var li = $("<li/>").append(link).append(user).append(text).append(timestamp).append(clear).addClass('tweet');
 				$('#recent').append(li);
@@ -112,7 +112,6 @@ function showTweets(username){
 			applyTextReplacements(".tweetText");
 			plotSets($("#graph"), allPlotData, username);
 			updateAddressBarHash(username);
-			$("abbr.timeago").timeago();
 			$('#recent').slideDown(400, function(){$("#username").removeClass("loading");});
 		});
 	});

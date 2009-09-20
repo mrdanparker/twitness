@@ -53,6 +53,12 @@ a {
 .tweet:nth-child(even) {
   background-color: #222;
 }
+.tweetText {
+  margin-right: 1.5ex;
+}
+.time {
+  font-size: smaller;
+}
 .fail,
 .fail a {
   color: red;
