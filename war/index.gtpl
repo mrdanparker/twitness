@@ -13,7 +13,8 @@
   <div id="content">
     <h1><a href="/">twitness</a></h1>
     <div id="userInput">
-        <input type="text" id="username"/><img id="usernameSearch" src="/images/show.png"/>
+        <input type="text" id="username"/>
+	<input type="button" id="usernameSearch" value="Show"/>
     </div>
     <div id="display">
         <div id="graph" style="width:600px;height:300px"><!-- Place holder --></div>

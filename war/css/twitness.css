@@ -58,6 +58,7 @@ a {
 }
 .time {
   font-size: smaller;
+  white-space: nowrap;
 }
 .fail,
 .fail a {
