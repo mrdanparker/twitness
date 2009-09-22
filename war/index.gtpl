@@ -18,12 +18,16 @@
     </div>
 	<div id="explanation">
 		Tracking your fitness since 2009.  Simply tweet your <span class="sets">sets</span> along with "hundredpushups" and we'll track your progress.
-		For an example check out <a href="#rapaul">@rapaul</a> struggling or <a href="#mrdanparker">@mrdanparker</a> dominating.
+		For an example check out <a href="#rapaul">@rapaul</a> struggling or <a href="#mrdanparker">@mrdanparker</a> dominating.<br/>
+		If you need a program, see <a href="http://hundredpushups.com">hundredpushups.com</a>
 	</div>
     <div id="display">
         <div id="graph" style="width:600px;height:300px"><!-- Place holder --></div>
         <ol id="recent"><!-- Place holder --></ol>
     </div>
+	<p>
+		twitness.net is not associated with hundredpushups.com
+	</p>
   </div>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <script type="text/javascript" src="/js/jquery.twitnessCacheSearch.js"></script>
