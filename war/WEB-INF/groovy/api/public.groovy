@@ -7,7 +7,7 @@ switch (request.method) {
 	case "GET" :
         Query query = new Query("tweet")
         .addSort("created_at", Query.SortDirection.DESCENDING)
-        List<Entity> tweets = datastoreService.prepare(query).asList(withLimit(30)) // Only show the latest 30 tweets on homepage
+        List<Entity> tweets = datastoreService.prepare(query).asList(withLimit(15)) // limit the tweets on homepage
         
         JSONArray jsonArray = new JSONArray()
         for(Entity tweet : tweets) {
