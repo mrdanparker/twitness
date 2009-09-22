@@ -17,7 +17,7 @@
 	<input type="button" id="usernameSearch" value="Show"/>
     </div>
 	<div id="explanation">
-		Tracking your fitness since 2009.  Simply tweet your <span class="sets">sets</span> along "hundredpushups" and we'll track your progress.
+		Tracking your fitness since 2009.  Simply tweet your <span class="sets">sets</span> along with "hundredpushups" and we'll track your progress.
 		For an example check out <a href="#rapaul">@rapaul</a> struggling or <a href="#mrdanparker">@mrdanparker</a> dominating.
 	</div>
     <div id="display">
