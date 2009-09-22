@@ -24,6 +24,19 @@ h1 {
 h1 a {
   text-decoration: none;
 }
+#explanation {
+  background-color: #333;
+  border: 1px solid #666;
+  color: #999;
+  font-size: smaller;
+  margin-bottom: 1em;
+  padding: 1ex;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+#explanation .sets {
+  font-weight: normal;
+}
 a img {
   border: none;
 }
