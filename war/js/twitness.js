@@ -79,54 +79,63 @@ function showTweets(username){
 	if (username === defaultSearchText) {
 		username = "";
 	}
+	var searchedUser = $("<span/>").append($("<a/>").attr({href:"#" + username}).text(username)).addClass("username");
+	
 	$("#username").addClass("loading");
 	$.twitnessCacheSearch({from: username}, function(results){
 		// clear previous contents
 		$('#recent').slideUp(400, function(){
 			$('#recent').empty();
 			if (results.length == 0) {
-				$('#graph').hide();
-				var item = $('<li/>');
-				item.append('No pushup tweets yet for '+ username + '! Start tweeting your pushups, an example is shown below...');
-				item.append($('<p class="exampleTweet"/>').append('Passed the first day of #hundredpushups 2,3,2,2,3'));
-				$('#recent').append(item);
-				applyTextReplacements(".exampleTweet");
+				noGraphMsg($("<span>").append("No pushup tweets yet for ").append(searchedUser));
 			}
 			else {
 				// iterate over the search results
 				var allPlotData = [];
 				for (var i in results) {
 					var tweet = results[i];
-					var sets = extractSetData(tweet.text);
-					if(sets) {
-						// compile the plot info
-						var userPlotData = allPlotData[tweet.from_user] ? allPlotData[tweet.from_user] : [];
-						userPlotData[userPlotData.length] = [Date.parse(tweet.created_at), sets.sum];
-						allPlotData[tweet.from_user] = userPlotData;
+					if(tweet.from_user != "twitnessnet") {
+						var sets = extractSetData(tweet.text);
+						
+						if(sets) {
+							// compile the plot info
+							var userPlotData = allPlotData[tweet.from_user] ? allPlotData[tweet.from_user] : [];
+							userPlotData[userPlotData.length] = [Date.parse(tweet.created_at), sets.sum];
+							allPlotData[tweet.from_user] = userPlotData;
+						}
+						// append new contents
+						var user = $("<span/>").append($("<a/>").attr({href:"#" + tweet.from_user}).text(tweet.from_user)).addClass("username");
+						var text = $("<span/>").text(tweet.text).addClass("tweetText");
+						var link = $('<a/>').attr({href:"#" + tweet.from_user});
+						var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
+			  			$(link).append(img);
+						var timestamp = $('<a/>').attr({href:'http://twitter.com/' +  tweet.from_user + '/status/' + tweet.id, 'class':'time'}).text($.timeago(new Date(tweet.created_at)));
+						var clear = $('<div class="autoclear"></div>');
+						var li = $("<li/>").append(link).append(user).append(text).append(timestamp).append(clear).addClass('tweet');
+						$('#recent').append(li);
 					}
-					// append new contents
-					var twitnessLink = $('<a/>')
-						.attr({href:"#" + tweet.from_user})
-						.text(tweet.from_user);
-					var user = $("<span/>").append(twitnessLink).addClass("username");
-					var text = $("<span/>").text(tweet.text).addClass("tweetText");
-					var link = $('<a/>').attr({href:"#" + tweet.from_user});
-					var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
-		  			$(link).append(img);
-					var timestamp = $('<a/>').attr({href:'http://twitter.com/' +  tweet.from_user + '/status/' + tweet.id, 'class':'time'}).text($.timeago(new Date(tweet.created_at)));
-					var clear = $('<div class="autoclear"></div>');
-					var li = $("<li/>").append(link).append(user).append(text).append(timestamp).append(clear).addClass('tweet');
-					$('#recent').append(li);
 				}
 				applyTextReplacements(".tweetText");
 				plotSets($("#graph"), allPlotData, username);
+				if(username && !allPlotData[username]){
+						noGraphMsg("Good work on starting the program and tweeting about it.");
+				}
+				 
 			}
 			updateAddressBarHash(username);
 			$('#recent').slideDown(400, function(){$("#username").removeClass("loading");});
 		});
 	});
 }
-
+function noGraphMsg(reason) {
+	$('#graph').hide();
+	var item = $('<li/>');
+	item.append(reason);
+	item.append($("<br>")).append("If you tweet in the style shown below we'll graph your progress for you.");
+	item.append($('<p id="exampleTweet" class="tweet"/>').append('Passed the first day of #hundredpushups 2,3,2,2,3'));
+	$('#recent').prepend(item);
+	applyTextReplacements("#exampleTweet");
+}
 // Updates the address bar hash with the given value
 function updateAddressBarHash(value){
 	if(value){
