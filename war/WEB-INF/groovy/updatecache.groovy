@@ -23,7 +23,7 @@ if (since) {
 	since = new Entity('since')
 }
 
-String queryTerm = 'hundredpushups'
+String queryTerm = 'hundredpushups+OR+100pushups+OR+100pushupsrva'
 String twitterUrl = "http://search.twitter.com/search.json?q=$queryTerm&rpp=500"	// 500 = max put size for datastore
 
 def url = twitterUrl += "&since_id=$sinceId"

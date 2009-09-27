@@ -94,26 +94,25 @@ function showTweets(username){
 				var allPlotData = [];
 				for (var i in results) {
 					var tweet = results[i];
-					if(tweet.from_user != "twitnessnet") {
-						var sets = extractSetData(tweet.text);
-						
-						if(sets) {
-							// compile the plot info
-							var userPlotData = allPlotData[tweet.from_user] ? allPlotData[tweet.from_user] : [];
-							userPlotData[userPlotData.length] = [Date.parse(tweet.created_at), sets.sum];
-							allPlotData[tweet.from_user] = userPlotData;
-						}
-						// append new contents
-						var user = $("<span/>").append($("<a/>").attr({href:"#" + tweet.from_user}).text(tweet.from_user)).addClass("username");
-						var text = $("<span/>").text(tweet.text).addClass("tweetText");
-						var link = $('<a/>').attr({href:"#" + tweet.from_user});
-						var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
-			  			$(link).append(img);
-						var timestamp = $('<a/>').attr({href:'http://twitter.com/' +  tweet.from_user + '/status/' + tweet.id, 'class':'time'}).text($.timeago(new Date(tweet.created_at)));
-						var clear = $('<div class="autoclear"></div>');
-						var li = $("<li/>").append(link).append(user).append(text).append(timestamp).append(clear).addClass('tweet');
-						$('#recent').append(li);
+					var sets = extractSetData(tweet.text);
+					
+					if(sets) {
+						// compile the plot info
+						var userPlotData = allPlotData[tweet.from_user] ? allPlotData[tweet.from_user] : [];
+						userPlotData[userPlotData.length] = [Date.parse(tweet.created_at), sets.sum];
+						allPlotData[tweet.from_user] = userPlotData;
 					}
+					// append new contents
+					var user = $("<span/>").append($("<a/>").attr({href:"#" + tweet.from_user}).text(tweet.from_user)).addClass("username");
+					var text = $("<span/>").text(tweet.text).addClass("tweetText");
+					var link = $('<a/>').attr({href:"#" + tweet.from_user});
+					var img = $('<img/>').attr({src:tweet.profile_image_url, alt:"avatar"});
+		  			$(link).append(img);
+					var timestamp = $('<a/>').attr({href:'http://twitter.com/' +  tweet.from_user + '/status/' + tweet.id, 'class':'time'}).text($.timeago(new Date(tweet.created_at)));
+					var clear = $('<div class="autoclear"></div>');
+					var li = $("<li/>").append(link).append(user).append(text).append(timestamp).append(clear).addClass('tweet');
+					$('#recent').append(li);
+					
 				}
 				applyTextReplacements(".tweetText");
 				plotSets($("#graph"), allPlotData, username);
