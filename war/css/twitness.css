@@ -4,13 +4,13 @@ article, aside, dialog, figure, footer, header, hgroup, menu, nav, section {
 }
 /* General colour theme */
 body {
-  background-color: #000;
-  font: 16px Helvetica, Arial;
+  background-color: #111;
+  font: 0.8em Helvetica, Arial;
   color: #fff;
 }
 div#content {
   margin: auto;
-  width: 600px;
+  width: 700px;
 }
 @font-face {
   font-family: "chunk";
@@ -28,7 +28,6 @@ h1 a {
   background-color: #333;
   border: 1px solid #666;
   color: #999;
-  font-size: smaller;
   margin-bottom: 1em;
   padding: 1ex;
   -moz-border-radius: 5px;
@@ -109,6 +108,8 @@ a {
 }
 #graph {
   margin-bottom: 4em;
+  width: 700px;
+  height: 250px;
 }
 .autoclear {
   clear: both;

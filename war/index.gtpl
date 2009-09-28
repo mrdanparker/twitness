@@ -22,7 +22,7 @@
 		If you need a program, see <a href="http://hundredpushups.com">hundredpushups.com</a>
 	</div>
     <div id="display">
-        <div id="graph" style="width:600px;height:300px"><!-- Place holder --></div>
+        <div id="graph"><!-- Place holder --></div>
         <ol id="recent"><!-- Place holder --></ol>
     </div>
 	<p>
